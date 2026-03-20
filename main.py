@@ -20,18 +20,18 @@ def cargar_datos_url():
             return pd.DataFrame(json.loads(js_data))
         except:
             pass
-return pd.DataFrame([
-        {"Tag": "Cojinete_1_Asiento", "Longitud": 15.0, "D_Inicial": 30.0, "D_Final": 30.0},
-        {"Tag": "Escalon_Hombro_1", "Longitud": 5.0, "D_Inicial": 30.0, "D_Final": 45.0},
-        {"Tag": "Plato_de_Empuje", "Longitud": 12.0, "D_Inicial": 65.0, "D_Final": 65.0},
-        {"Tag": "Escalon_Hombro_2", "Longitud": 5.0, "D_Inicial": 45.0, "D_Final": 45.0},
-        {"Tag": "Sello_Laberinto_A", "Longitud": 10.0, "D_Inicial": 45.0, "D_Final": 45.0},
-        {"Tag": "Sello_Laberinto_B", "Longitud": 10.0, "D_Inicial": 48.0, "D_Final": 48.0},
-        {"Tag": "Transicion_Cuerpo", "Longitud": 8.0, "D_Inicial": 48.0, "D_Final": 70.0},
-        {"Tag": "Cuerpo_Compresor_1", "Longitud": 40.0, "D_Inicial": 70.0, "D_Final": 78.0},
-        {"Tag": "Cuerpo_Compresor_2", "Longitud": 45.0, "D_Inicial": 78.0, "D_Final": 85.0},
-        {"Tag": "Salida_Sello_Post", "Longitud": 15.0, "D_Inicial": 50.0, "D_Final": 50.0},
-        {"Tag": "Cojinete_2_Final", "Longitud": 20.0, "D_Inicial": 40.0, "D_Final": 40.0},
+    return pd.DataFrame([
+            {"Tag": "Cojinete_1_Asiento", "Longitud": 15.0, "D_Inicial": 30.0, "D_Final": 30.0},
+            {"Tag": "Escalon_Hombro_1", "Longitud": 5.0, "D_Inicial": 30.0, "D_Final": 45.0},
+            {"Tag": "Plato_de_Empuje", "Longitud": 12.0, "D_Inicial": 65.0, "D_Final": 65.0},
+            {"Tag": "Escalon_Hombro_2", "Longitud": 5.0, "D_Inicial": 45.0, "D_Final": 45.0},
+            {"Tag": "Sello_Laberinto_A", "Longitud": 10.0, "D_Inicial": 45.0, "D_Final": 45.0},
+            {"Tag": "Sello_Laberinto_B", "Longitud": 10.0, "D_Inicial": 48.0, "D_Final": 48.0},
+            {"Tag": "Transicion_Cuerpo", "Longitud": 8.0, "D_Inicial": 48.0, "D_Final": 70.0},
+            {"Tag": "Cuerpo_Compresor_1", "Longitud": 40.0, "D_Inicial": 70.0, "D_Final": 78.0},
+            {"Tag": "Cuerpo_Compresor_2", "Longitud": 45.0, "D_Inicial": 78.0, "D_Final": 85.0},
+            {"Tag": "Salida_Sello_Post", "Longitud": 15.0, "D_Inicial": 50.0, "D_Final": 50.0},
+            {"Tag": "Cojinete_2_Final", "Longitud": 20.0, "D_Inicial": 40.0, "D_Final": 40.0},
     ])
 
 def generar_dxf(df):
