@@ -10,39 +10,36 @@ st.title("⚙️ Generador de Ejes con Exportación DXF")
 
 # 2. Función para generar el archivo DXF (Debe estar arriba para que Python la conozca)
 def generar_dxf(df):
-    # Creamos un documento DXF nuevo (versión R2010 para máxima compatibilidad)
     doc = ezdxf.new('R2010')
     msp = doc.modelspace()
     
     x_pos = 0.0
     for _, fila in df.iterrows():
-        # Forzamos a que sean flotantes para evitar errores de tipo
         L = float(fila["Longitud"])
         d1 = float(fila["D_Inicial"])
         d2 = float(fila["D_Final"])
         x_fin = x_pos + L
         
-        # Dibujar perfil (Líneas de contorno)
+        # Perfil superior e inferior
         msp.add_line((x_pos, d1/2), (x_fin, d2/2))
         msp.add_line((x_pos, -d1/2), (x_fin, -d2/2))
         
-        # Línea vertical de partición (Inicio de sección)
+        # Vertical divisoria
         msp.add_line((x_pos, d1/2), (x_pos, -d1/2))
         
         x_pos = x_fin
     
-    # Línea vertical de cierre final
+    # Cierre final
     ultimo_d2 = float(df.iloc[-1]["D_Final"])
     msp.add_line((x_pos, ultimo_d2/2), (x_pos, -ultimo_d2/2))
     
-    # Línea de centro (Eje de simetría) con estilo de línea técnica
-    msp.add_line((0, 0), (x_pos, 0), dxfattribs={'linetype': 'CENTER', 'color': 8})
+    # Eje de centro
+    msp.add_line((0, 0), (x_pos, 0), dxfattribs={'linetype': 'CENTER'})
 
-    # --- CAMBIO CLAVE: Exportación robusta ---
-    # Usamos BytesIO para manejar el archivo como un flujo de datos binarios
-    out = io.BytesIO()
-    doc.write(out, encoding='utf-8')
-    return out.getvalue() # Esto devuelve bytes, que es lo que st.download_button prefiere
+    # CAMBIO AQUÍ: Usamos un buffer de Bytes y el método write_to_stream
+    buffer = io.BytesIO()
+    doc.write(buffer) # ezdxf detecta el stream y escribe los bytes directamente
+    return buffer.getvalue()
 
 # 3. Datos iniciales y TABLA (Aquí se define df_editado)
 datos_ini = pd.DataFrame([
@@ -69,11 +66,12 @@ if not df_editado.empty:
     ax.axhline(0, color='black', linestyle='-.', lw=0.5)
     st.pyplot(fig)
 
-    # Botón de Descarga
-    dxf_data = generar_dxf(df_editado)
-    st.download_button(
-        label="💾 Descargar archivo DXF",
-        data=dxf_data,
-        file_name="eje_disenado.dxf",
-        mime="application/octet-stream"
-    )
+# Generamos los bytes del archivo
+dxf_bytes = generar_dxf(df_editado)
+
+st.download_button(
+    label="💾 Descargar archivo DXF",
+    data=dxf_bytes, # Pasamos los bytes directamente
+    file_name="eje_disenado.dxf",
+    mime="application/dxf" 
+)
