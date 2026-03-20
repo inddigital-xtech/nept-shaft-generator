@@ -13,6 +13,7 @@ Si deseas ejecutarlo de forma local, necesitarás:
 * Python 3.8 o superior.
 * Las librerías listadas en `requirements.txt`.
 
+<details>
 ## 📦 Instalación Local
 1.  Clona este repositorio:
     ```bash
@@ -32,6 +33,7 @@ Para usar esta herramienta sin instalar nada:
 1.  Sube este código a un repositorio de GitHub.
 2.  Entra en [Streamlit Community Cloud](https://share.streamlit.io/).
 3.  Conecta tu repositorio y despliega en un clic.
+</details>
 
 ## 📄 Licencia
 Este proyecto está bajo la Licencia MIT. Siéntete libre de usarlo y mejorarlo.
