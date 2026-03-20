@@ -8,12 +8,15 @@ Esta es una herramienta web interactiva diseñada para ingenieros mecánicos y d
 * **Exportación a CAD:** Genera archivos DXF con capas y líneas de centro.
 * **Colaborativo:** Genera enlaces únicos que contienen todo el diseño para compartir con colegas.
 
+
+<details>
+
 ## 🛠️ Requisitos técnicos
 Si deseas ejecutarlo de forma local, necesitarás:
 * Python 3.8 o superior.
 * Las librerías listadas en `requirements.txt`.
 
-<details>
+
 ## 📦 Instalación Local
 1.  Clona este repositorio:
     ```bash
